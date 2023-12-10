@@ -7,6 +7,7 @@ public class Ex7Test {
     public void testLongRedirect() {
         String redirectedURL = "https://playground.learnqa.ru/api/long_redirect";
         int statusCode = 0;
+        int redirectCount = 0;
         while (statusCode != 200){
             Response response = RestAssured
                     .given()
@@ -20,8 +21,10 @@ public class Ex7Test {
             System.out.println("Status code: " + statusCode);
             if (locationHeader!=null){
                 System.out.println("The request was redirected to " + locationHeader + "\n");
+                redirectCount++;
                 redirectedURL = locationHeader;
             }
         }
+        System.out.println("Count of redirects : " + redirectCount);
     }
 }
